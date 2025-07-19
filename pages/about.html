@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Code_d_Code | Vikram University</title>
+    <meta name="description" content="Learn about Code_d_Code, Vikram University's premier coding society. Discover our mission, vision, history, and the amazing community that drives innovation in technology.">
+    <meta name="keywords" content="Code_d_Code, About, Vikram University, coding society, mission, vision, history, community">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://code-d-code.edu/about">
+    <meta property="og:title" content="About Code_d_Code - Vikram University's Premier Coding Society">
+    <meta property="og:description" content="Learn about Code_d_Code, Vikram University's premier coding society. Discover our mission, vision, history, and amazing community.">
+    <meta property="og:image" content="../Images/Code_D_Code Logo.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://code-d-code.edu/about">
+    <meta property="twitter:title" content="About Code_d_Code - Vikram University's Premier Coding Society">
+    <meta property="twitter:description" content="Learn about Code_d_Code, Vikram University's premier coding society. Discover our mission, vision, history, and amazing community.">
+    <meta property="twitter:image" content="../Images/Code_D_Code Logo.png">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../Images/Code_D_Code Logo.png">
+
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../styles/main.css">
+
+    <!-- Enhanced Page Styles -->
+    <style>
+        .page-header {
+            background: var(--gradient-bg);
+            padding: 120px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 80%, rgba(49, 130, 206, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(56, 161, 105, 0.1) 0%, transparent 50%);
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        .page-header .container {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .page-title {
+            font-size: clamp(3rem, 6vw, 4.5rem);
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+        
+        .page-subtitle {
+            font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+            color: var(--accent-primary);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .page-description {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            color: var(--text-secondary);
+        }
+        
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--accent-primary);
+            transform: translateX(-50%);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            width: 50%;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            padding-right: 2rem;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            padding-left: 2rem;
+        }
+        
+        .timeline-content {
+            background: var(--bg-card);
+            border: 1px solid var(--border-secondary);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            position: relative;
+            backdrop-filter: blur(20px);
+            transition: var(--transition-normal);
+        }
+        
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--accent-primary);
+        }
+        
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 20px;
+            height: 20px;
+            background: var(--accent-primary);
+            border-radius: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content::before {
+            right: -2.5rem;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content::before {
+            left: -2.5rem;
+        }
+        
+        .timeline-year {
+            color: var(--accent-primary);
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-title {
+            color: var(--text-primary);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        .timeline-desc {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+        
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .achievement-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-secondary);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            text-align: center;
+            transition: var(--transition-normal);
+            backdrop-filter: blur(20px);
+        }
+        
+        .achievement-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--accent-primary);
+        }
+        
+        .achievement-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .achievement-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .value-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-secondary);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            transition: var(--transition-normal);
+            backdrop-filter: blur(20px);
+        }
+        
+        .value-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--accent-primary);
+        }
+        
+        .value-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            color: white;
+        }
+        
+        .value-title {
+            color: var(--text-primary);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .value-desc {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+        
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 30px;
+            }
+            .timeline-item {
+                width: 100%;
+                left: 0 !important;
+                padding-left: 4rem !important;
+                padding-right: 0 !important;
+            }
+            .timeline-item .timeline-content::before {
+                left: -2.5rem !important;
+            }
+            .achievements-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 1.5rem;
+            }
+            .values-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg custom-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">
+                <img src="../Images/Code_D_Code Logo.png" alt="Code_d_Code Logo" class="logo">
+                <span class="brand-text">Code_d_Code</span>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="courses.html">Courses</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="events.html">Events</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="projects.html">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="exec-team.html">Team</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="gallery.html">Gallery</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-campus-vault" href="membership.html">Join Us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="page-content">
+                        <h2 class="page-subtitle">Innovation • Excellence • Community</h2>
+                        <h1 class="page-title">About Code_d_Code</h1>
+                        <p class="page-description">
+                            Discover the story behind Vikram University's premier coding society. Learn about our mission, vision, and the passionate community that drives innovation in technology education and development.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="page-image">
+                        <img src="../Images/IMG-20241230-WA0012.jpg" alt="About Us" class="img-fluid rounded">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission & Vision -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2 class="section-title">Our Mission & Vision</h2>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-6">
+                    <div class="mission-card">
+                        <div class="icon-container">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <h3>Our Mission</h3>
+                        <p>
+                            To empower students at Vikram University with cutting-edge programming skills, foster innovation through collaborative projects, and create a supportive community where every member can grow, learn, and contribute to the future of technology.
+                        </p>
+                        <p>
+                            We are committed to bridging the gap between academic learning and industry requirements by providing hands-on experience, mentorship, and real-world project opportunities.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="vision-card">
+                        <div class="icon-container">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <h3>Our Vision</h3>
+                        <p>
+                            To become the leading coding society in India, recognized for producing exceptional developers, innovators, and tech leaders who contribute significantly to the global technology ecosystem and drive digital transformation.
+                        </p>
+                        <p>
+                            We envision a future where every Code_d_Code member becomes a catalyst for technological advancement, inspiring others and creating solutions that make a positive impact on society.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Journey -->
+    <section class="py-5 bg-secondary">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2 class="section-title">Our Journey</h2>
+                    <p class="text-center lead mb-5">
+                        From humble beginnings to becoming Vikram University's premier coding society
+                    </p>
+                </div>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2020</div>
+                        <h4 class="timeline-title">The Beginning</h4>
+                        <p class="timeline-desc">
+                            Code_d_Code was founded by a group of passionate computer science students who wanted to create a platform for collaborative learning and skill development in programming and technology.
+                        </p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2021</div>
+                        <h4 class="timeline-title">First Major Event</h4>
+                        <p class="timeline-desc">
+                            Organized our first hackathon "CodeFest 2021" with over 200 participants, establishing Code_d_Code as a serious platform for innovation and technical excellence.
+                        </p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2022</div>
+                        <h4 class="timeline-title">Community Growth</h4>
+                        <p class="timeline-desc">
+                            Reached 150+ active members and launched our mentorship program, connecting senior students with juniors to foster knowledge sharing and career guidance.
+                        </p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2023</div>
+                        <h4 class="timeline-title">Industry Partnerships</h4>
+                        <p class="timeline-desc">
+                            Formed strategic partnerships with leading tech companies and startups, providing our members with internship opportunities and real-world project experience.
+                        </p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2024</div>
+                        <h4 class="timeline-title">National Recognition</h4>
+                        <p class="timeline-desc">
+                            Achieved national recognition with our innovative projects and community initiatives, becoming one of the top coding societies in Indian universities.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2 class="section-title">Our Achievements</h2>
+                    <p class="text-center lead mb-4">
+                        Numbers that reflect our impact and growth
+                    </p>
+                </div>
+            </div>
+            <div class="achievements-grid">
+                <div class="achievement-card">
+                    <div class="achievement-number">300+</div>
+                    <div class="achievement-label">Active Members</div>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-number">50+</div>
+                    <div class="achievement-label">Projects Completed</div>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-number">25+</div>
+                    <div class="achievement-label">Workshops Conducted</div>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-number">15+</div>
+                    <div class="achievement-label">Hackathons Organized</div>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-number">100+</div>
+                    <div class="achievement-label">Industry Connections</div>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-number">95%</div>
+                    <div class="achievement-label">Placement Success</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Values -->
+    <section class="py-5 bg-secondary">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2 class="section-title">Our Core Values</h2>
+                    <p class="text-center lead mb-5">
+                        The principles that guide our community and drive our success
+                    </p>
+                </div>
+            </div>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h4 class="value-title">Innovation</h4>
+                    <p class="value-desc">
+                        We embrace creativity and encourage out-of-the-box thinking to solve complex problems and develop cutting-edge solutions.
+                    </p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h4 class="value-title">Collaboration</h4>
+                    <p class="value-desc">
+                        We believe in the power of teamwork and create an environment where diverse minds come together to achieve common goals.
+                    </p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h4 class="value-title">Excellence</h4>
+                    <p class="value-desc">
+                        We strive for the highest standards in everything we do, from code quality to event organization and community building.
+                    </p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h4 class="value-title">Inclusivity</h4>
+                    <p class="value-desc">
+                        We welcome everyone regardless of their background or skill level, fostering an inclusive environment where all members can thrive.
+                    </p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h4 class="value-title">Learning</h4>
+                    <p class="value-desc">
+                        We promote continuous learning and skill development, providing resources and opportunities for personal and professional growth.
+                    </p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h4 class="value-title">Integrity</h4>
+                    <p class="value-desc">
+                        We maintain the highest ethical standards in all our activities and build trust through transparency and honest communication.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="footer-brand">
+                        <img src="../Images/Code_D_Code Logo.png" alt="Code_d_Code Logo" class="footer-logo">
+                        <span>Code_d_Code</span>
+                    </div>
+                    <p class="footer-description">
+                        Empowering the next generation of developers through innovation, collaboration, and excellence. Join us in building the future of technology at Vikram University.
+                    </p>
+                </div>
+                <div class="col-lg-2">
+                    <div class="footer-links">
+                        <h5>Quick Links</h5>
+                        <ul>
+                            <li><a href="../index.html">Home</a></li>
+                            <li><a href="about.html">About</a></li>
+                            <li><a href="courses.html">Courses</a></li>
+                            <li><a href="events.html">Events</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="footer-links">
+                        <h5>Community</h5>
+                        <ul>
+                            <li><a href="membership.html">Join Us</a></li>
+                            <li><a href="exec-team.html">Team</a></li>
+                            <li><a href="gallery.html">Gallery</a></li>
+                            <li><a href="mentorship.html">Mentorship</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="footer-links">
+                        <h5>Resources</h5>
+                        <ul>
+                            <li><a href="projects.html">Projects</a></li>
+                            <li><a href="learn.html">Learn</a></li>
+                            <li><a href="careers.html">Careers</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="footer-links">
+                        <h5>Connect</h5>
+                        <ul>
+                            <li><a href="https://x.com/codedcode06" target="_blank">Twitter</a></li>
+                            <li><a href="https://github.com/CodedCode06" target="_blank">GitHub</a></li>
+                            <li><a href="https://www.instagram.com/code_d_code/?__pwa=1" target="_blank">Instagram</a></li>
+                            <li><a href="contact.html">Contact Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <hr class="footer-divider">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p>&copy; 2024 Code_d_Code Society. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p>Made with <i class="fas fa-heart text-danger"></i> by Code_d_Code Team</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="../scripts/main.js"></script>
+</body>
+
+</html>
