@@ -1,10 +1,33 @@
 /* =====================================
    Code_d_Code Website - Professional Design System
+   Enhanced for Core Web Vitals & Performance
    ===================================== */
 
+/* Critical CSS optimizations */
+* {
+    box-sizing: border-box;
+}
 
-/* Import Professional Fonts */
+/* Prevent layout shift with consistent sizing */
+img, video, iframe {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
 
+/* Lazy loading placeholder styles */
+.lazy {
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.lazy.loaded {
+    opacity: 1;
+}
+
+/* Font loading optimization (removed invalid @font-display rule) */
+
+/* Import Professional Fonts with font-display swap */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap');
 
 /* Professional Color System */
@@ -2667,6 +2690,7 @@ section {
     margin-bottom: 20px;
     display: -webkit-box;
     -webkit-line-clamp: 2;
+    line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
