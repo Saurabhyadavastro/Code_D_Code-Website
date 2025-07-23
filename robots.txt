@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://www.codedcode.tech/sitemap.xml
+Sitemap: https://codedcode.tech/sitemap.xml
 
 # High priority pages for search engines
 Allow: /index.html
@@ -18,6 +18,21 @@ Allow: /pages/learn.html
 Allow: /pages/careers.html
 
 # Allow important directories
+Allow: /styles/
+Allow: /scripts/
+Allow: /Images/
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
+
+# Specific bot instructions
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
 Allow: /pages/
 Allow: /Images/
 Allow: /styles/
