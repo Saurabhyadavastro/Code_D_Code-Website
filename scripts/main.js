@@ -4,6 +4,33 @@
 
 // Main Application Class
 class CodeDCodeApp {
+    // Membership Form Submission Handler
+    initializeMembershipFormHandler() {
+        const form = document.getElementById('membershipForm');
+        if (!form) return;
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            // Optionally, validate fields here
+            this.showMembershipSuccess();
+            form.reset();
+        });
+    }
+
+    showMembershipSuccess() {
+        // Show a Bootstrap alert or custom notification
+        const notification = document.createElement('div');
+        notification.className = 'alert alert-success alert-dismissible fade show position-fixed';
+        notification.style.cssText = 'top: 20px; right: 20px; z-index: 9999; max-width: 350px; animation: slideInRight 0.3s ease;';
+        notification.innerHTML = `
+            <i class="fas fa-check-circle me-2"></i>
+            Membership form submitted! Welcome to Code_d_Code.
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        `;
+        document.body.appendChild(notification);
+        setTimeout(() => {
+            if (notification.parentNode) notification.remove();
+        }, 5000);
+    }
     constructor() {
         this.isMainPage = window.location.pathname === '/' || window.location.pathname.includes('index.html');
         this.init();
@@ -56,6 +83,7 @@ class CodeDCodeApp {
         this.initializeCardAnimations();
         this.initializeSmoothScrolling();
         this.initializeFormAnimations();
+        this.initializeMembershipFormHandler();
     }
 
     // Enhanced Loading Screen with Code_d_Code Logo

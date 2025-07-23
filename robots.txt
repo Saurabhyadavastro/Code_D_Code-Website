@@ -1,0 +1,68 @@
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://www.codedcode.tech/sitemap.xml
+
+# High priority pages for search engines
+Allow: /index.html
+Allow: /pages/about.html
+Allow: /pages/membership.html
+Allow: /pages/events.html
+Allow: /pages/courses.html
+Allow: /pages/projects.html
+Allow: /pages/contact.html
+Allow: /pages/exec-team.html
+Allow: /pages/mentorship.html
+Allow: /pages/learn.html
+Allow: /pages/careers.html
+
+# Allow important directories
+Allow: /pages/
+Allow: /Images/
+Allow: /styles/
+Allow: /scripts/
+
+# Important: Allow images for better indexing
+Allow: /Images/Code_D_Code Logo.png
+Allow: /Images/IMG-20241226-WA0007.jpg
+Allow: /Images/IMG-20241230-WA0009.jpg
+Allow: /Images/Code_d_Code Executive Team/
+
+# Disallow sensitive or unnecessary directories
+Disallow: /admin/
+Disallow: /private/
+Disallow: /.git/
+Disallow: /reference_images/
+Disallow: /.vscode/
+Disallow: /node_modules/
+
+# Allow search engines to crawl CSS and JS files for better rendering
+Allow: /styles/*.css
+Allow: /scripts/*.js
+
+# Special instructions for major search engines
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Crawl delay to prevent server overload
+Crawl-delay: 1
+Allow: /scripts/*.js
+
+# Crawl-delay (optional, in seconds)
+Crawl-delay: 1
+
+# Specific instructions for major search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
