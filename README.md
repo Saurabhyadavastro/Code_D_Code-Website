@@ -1,6 +1,6 @@
 # Code_d_Code Official Website
 
-A responsive, modern website for the Code_d_Code coding society at Vikram University, Ujjain. Inspired by the structure and design of successful coding societies like [Warwick Coding Society](https://www.warwickcodingsociety.com/).
+A responsive, modern website for the Code_d_Code coding society at Vikram University, Ujjain.
 
 ## 🌐 Website Structure
 
