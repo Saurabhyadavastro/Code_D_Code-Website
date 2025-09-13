@@ -1,0 +1,26 @@
+# Render.com deployment configuration
+# This file helps Render understand your project structure
+
+services:
+  - type: web
+    name: code-d-code-backend
+    env: node
+    buildCommand: npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+    # Health check endpoint
+    healthCheckPath: /health
+    # Auto-deploy from main branch
+    autoDeploy: true
+    # Resource allocation
+    plan: free  # Change to 'starter' or higher for production
+    # Build settings
+    buildFilter:
+      paths:
+        - backend/**
+    # Environment-specific settings
+    rootDir: backend  # This is the key setting for your structure

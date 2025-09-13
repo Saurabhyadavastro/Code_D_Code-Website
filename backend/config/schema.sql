@@ -114,11 +114,11 @@ CREATE TABLE IF NOT EXISTS admin_users (
     CONSTRAINT valid_email CHECK (email ~* '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$')
 );
 
--- Insert default admin user (password: admin123 - CHANGE THIS IN PRODUCTION!)
--- Password hash for 'admin123' using bcrypt with 12 rounds
-INSERT INTO admin_users (username, email, password_hash, full_name, role) 
-VALUES ('admin', 'admin@codedcode.tech', '$2b$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMQJqhN8/LewY5CoykNZ.DGWqq', 'Code_d_Code Admin', 'admin')
-ON CONFLICT (username) DO NOTHING;
+
+-- IMPORTANT: Do NOT use a default admin password in production!
+-- After deployment, create an admin user securely using a hashed password.
+-- Example (run in psql after deployment):
+-- INSERT INTO admin_users (username, email, password_hash, full_name, role) VALUES ('admin', 'admin@yourdomain.com', '<bcrypt_hash>', 'Your Name', 'admin');
 
 -- Statistics View for Dashboard
 CREATE OR REPLACE VIEW dashboard_stats AS

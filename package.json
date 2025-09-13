@@ -1,15 +1,43 @@
 {
   "name": "code-d-code-website",
   "version": "1.0.0",
-  "description": "Code_d_Code Website Repository",
+  "description": "Code_d_Code Website Repository - Full-stack club website with backend API",
+  "homepage": "https://saurabhyadavastro.github.io/Code_D_Code-Website",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Saurabhyadavastro/Code_D_Code-Website.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Saurabhyadavastro/Code_D_Code-Website/issues"
+  },
+  "author": "Code_d_Code Society",
+  "license": "MIT",
+  "keywords": [
+    "nodejs",
+    "express",
+    "postgresql",
+    "club-website",
+    "api",
+    "backend",
+    "render",
+    "deployment"
+  ],
   "scripts": {
-    "build": "cd backend && npm install",
+    "build": "cd backend && npm ci",
     "start": "cd backend && npm start",
     "dev": "cd backend && npm run dev",
-    "test": "cd backend && npm test"
+    "test": "cd backend && npm test",
+    "backend:install": "cd backend && npm install",
+    "backend:build": "cd backend && npm run build",
+    "backend:start": "cd backend && npm start",
+    "backend:dev": "cd backend && npm run dev",
+    "backend:test": "cd backend && npm test",
+    "lint": "cd backend && npm run lint || echo 'No lint script found'",
+    "clean": "cd backend && rm -rf node_modules && npm install"
   },
   "engines": {
     "node": ">=16.0.0",
     "npm": ">=8.0.0"
-  }
+  },
+  "private": true
 }
