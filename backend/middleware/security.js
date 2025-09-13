@@ -239,8 +239,8 @@ const corsOptions = {
       'http://localhost:3001',
       'http://127.0.0.1:3000',
       'http://127.0.0.1:5500', // Live Server
-      'https://codedcode.tech',
-      'https://www.codedcode.tech',
+      'https://codedcode.tech', // Your custom domain
+      'https://www.codedcode.tech', // Your custom domain with www
       'https://saurabhyadavastro.github.io', // GitHub Pages
       'https://saurabhyadavastro.github.io/Code_D_Code-Website', // GitHub Pages with repo path
       process.env.FRONTEND_URL
