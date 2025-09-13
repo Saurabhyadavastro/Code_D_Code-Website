@@ -437,22 +437,22 @@
                                 <div class="row g-3">
                                     <div class="col-md-6">
                                         <label for="firstName" class="form-label">First Name *</label>
-                                        <input type="text" class="form-control" id="firstName" required>
+                                        <input type="text" class="form-control" id="firstName" name="firstName" required>
                                     </div>
                                     <div class="col-md-6">
                                         <label for="lastName" class="form-label">Last Name *</label>
-                                        <input type="text" class="form-control" id="lastName" required>
+                                        <input type="text" class="form-control" id="lastName" name="lastName" required>
                                     </div>
                                     
                                     <div class="col-12">
                                         <label for="email" class="form-label">Email Address *</label>
-                                        <input type="email" class="form-control" id="email" required>
+                                        <input type="email" class="form-control" id="email" name="email" required>
                                         <div class="form-text">We'll use this to send you workshop updates and community news</div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <label for="year" class="form-label">Academic Status *</label>
-                                        <select class="form-select" id="year" required>
+                                        <select class="form-select" id="year" name="year" required>
                                             <option value="">Select Your Status</option>
                                             <option value="1st">1st Year Student</option>
                                             <option value="2nd">2nd Year Student</option>
@@ -465,7 +465,7 @@
                                     
                                     <div class="col-md-6">
                                         <label for="branch" class="form-label">Branch/Department *</label>
-                                        <select class="form-select" id="branch" required>
+                                        <select class="form-select" id="branch" name="branch" required>
                                             <option value="">Select Branch</option>
                                             <option value="cse">Computer Science & Engineering</option>
                                             <option value="it">Information Technology</option>
@@ -481,37 +481,37 @@
                                         <label class="form-label">Programming Interests (Select all that apply)</label>
                                         <div class="interest-grid">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="web" id="web">
+                                                <input class="form-check-input" type="checkbox" value="web" id="web" name="interests">
                                                 <label class="form-check-label" for="web">
                                                     <i class="fas fa-globe me-2"></i>Web Development
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="mobile" id="mobile">
+                                                <input class="form-check-input" type="checkbox" value="mobile" id="mobile" name="interests">
                                                 <label class="form-check-label" for="mobile">
                                                     <i class="fas fa-mobile-alt me-2"></i>Mobile Development
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="data" id="data">
+                                                <input class="form-check-input" type="checkbox" value="data" id="data" name="interests">
                                                 <label class="form-check-label" for="data">
                                                     <i class="fas fa-chart-bar me-2"></i>Data Science
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="ai" id="ai">
+                                                <input class="form-check-input" type="checkbox" value="ai" id="ai" name="interests">
                                                 <label class="form-check-label" for="ai">
                                                     <i class="fas fa-robot me-2"></i>AI/Machine Learning
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="devops" id="devops">
+                                                <input class="form-check-input" type="checkbox" value="devops" id="devops" name="interests">
                                                 <label class="form-check-label" for="devops">
                                                     <i class="fas fa-server me-2"></i>DevOps
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="security" id="security">
+                                                <input class="form-check-input" type="checkbox" value="security" id="security" name="interests">
                                                 <label class="form-check-label" for="security">
                                                     <i class="fas fa-shield-alt me-2"></i>Cybersecurity
                                                 </label>
@@ -521,7 +521,7 @@
 
                                     <div class="col-12">
                                         <label for="experience" class="form-label">Programming Experience *</label>
-                                        <select class="form-select" id="experience" required>
+                                        <select class="form-select" id="experience" name="experience" required>
                                             <option value="">Select Experience Level</option>
                                             <option value="absolute-beginner">Complete Beginner (Never coded before)</option>
                                             <option value="beginner">Beginner (0-1 years)</option>
@@ -532,12 +532,12 @@
 
                                     <div class="col-12">
                                         <label for="goals" class="form-label">What are your goals with Code_d_Code?</label>
-                                        <textarea class="form-control" id="goals" rows="3" placeholder="Tell us what you hope to achieve by joining our community..."></textarea>
+                                        <textarea class="form-control" id="goals" name="goals" rows="3" placeholder="Tell us what you hope to achieve by joining our community..."></textarea>
                                     </div>
 
                                     <div class="col-12">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="agree" required>
+                                            <input class="form-check-input" type="checkbox" id="agree" name="agree" required>
                                             <label class="form-check-label" for="agree">
                                                 I agree to the <a href="#" class="text-primary">Code_d_Code community guidelines</a> and terms of membership *
                                             </label>
@@ -546,7 +546,7 @@
 
                                     <div class="col-12">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="newsletter">
+                                            <input class="form-check-input" type="checkbox" id="newsletter" name="newsletter">
                                             <label class="form-check-label" for="newsletter">
                                                 I'd like to receive newsletters, workshop updates, and event notifications
                                             </label>

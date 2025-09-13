@@ -31,9 +31,13 @@ class CodeDCodeApp {
                 const formData = new FormData(form);
                 const membershipData = {};
                 
+                console.log('🔍 Raw FormData entries:');
                 for (let [key, value] of formData.entries()) {
+                    console.log(`  ${key}: "${value}"`);
                     membershipData[key] = value;
                 }
+                
+                console.log('📝 Collected membershipData:', membershipData);
                 
                 // Map frontend field names to backend expected names
                 const yearValue = membershipData.year || membershipData.yearOfStudy || '';
