@@ -27,11 +27,17 @@ class CodeDCodeApp {
             submitBtn.disabled = true;
 
             try {
+                // Debug form element
+                console.log('📋 Form element:', form);
+                console.log('📋 Form ID:', form.id);
+                console.log('📋 Form elements count:', form.elements.length);
+                
                 // Collect form data
                 const formData = new FormData(form);
                 const membershipData = {};
                 
                 console.log('🔍 Raw FormData entries:');
+                console.log('🚀 Script version: 20250914-v2');
                 for (let [key, value] of formData.entries()) {
                     console.log(`  ${key}: "${value}"`);
                     membershipData[key] = value;
