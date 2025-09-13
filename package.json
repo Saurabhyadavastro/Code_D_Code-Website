@@ -1,0 +1,15 @@
+{
+  "name": "code-d-code-website",
+  "version": "1.0.0",
+  "description": "Code_d_Code Website Repository",
+  "scripts": {
+    "build": "cd backend && npm install",
+    "start": "cd backend && npm start",
+    "dev": "cd backend && npm run dev",
+    "test": "cd backend && npm test"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  }
+}
