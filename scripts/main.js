@@ -69,6 +69,12 @@ class CodeDCodeApp {
                 // Get programming interests from checkboxes as array
                 const interests = this.getSelectedInterests();
                 
+                // Map programming experience values
+                let mappedExperience = membershipData.experience || '';
+                if (mappedExperience === 'absolute-beginner') {
+                    mappedExperience = 'beginner';
+                }
+                
                 const backendData = {
                     firstName: membershipData.firstName || '',
                     lastName: membershipData.lastName || '',
@@ -79,7 +85,7 @@ class CodeDCodeApp {
                     yearOfStudy: mappedYear,
                     branch: membershipData.branch || '', // Backend expects 'branch'
                     membershipType: membershipType, // 'student' or 'alumni'
-                    programmingExperience: membershipData.experience || '',
+                    programmingExperience: mappedExperience,
                     interests: interests, // Keep as array, not string
                     githubProfile: membershipData.githubUrl || 'https://github.com/placeholder',
                     linkedinProfile: membershipData.linkedinUrl || 'https://linkedin.com/in/placeholder',
@@ -123,9 +129,22 @@ class CodeDCodeApp {
     getSelectedInterests() {
         const interests = [];
         const checkboxes = document.querySelectorAll('.interest-grid input[type="checkbox"]:checked');
+        
+        // Map frontend interest values to backend expected values
+        const interestMapping = {
+            'web': 'web-development',
+            'mobile': 'mobile-development', 
+            'data': 'data-science',
+            'ai': 'machine-learning',
+            'devops': 'devops',
+            'security': 'cybersecurity'
+        };
+        
         checkboxes.forEach(checkbox => {
-            interests.push(checkbox.value);
+            const mappedValue = interestMapping[checkbox.value] || checkbox.value;
+            interests.push(mappedValue);
         });
+        
         return interests;
     }
 
