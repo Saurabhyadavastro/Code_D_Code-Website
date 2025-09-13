@@ -4,20 +4,43 @@
  */
 
 const { Pool } = require('pg');
-require('dotenv').config();
+const { URL } = require('url');
 
-// Database configuration
-const dbConfig = {
-  connectionString: process.env.DATABASE_URL,
-  // SSL configuration for production (Render requires SSL)
-  ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
-  // Connection pool settings for optimal performance
-  max: 10, // Maximum number of connections in the pool
-  idleTimeoutMillis: 30000, // Close idle connections after 30 seconds
-  connectionTimeoutMillis: 2000, // Return error if connection takes longer than 2 seconds
-};
+// Parse the database URL to create a config object
+const connectionString = process.env.DATABASE_URL;
+let dbConfig;
 
-// Create connection pool
+if (connectionString) {
+  const dbUrl = new URL(connectionString);
+  dbConfig = {
+    user: dbUrl.username,
+    password: dbUrl.password,
+    host: dbUrl.hostname,
+    port: dbUrl.port,
+    database: dbUrl.pathname.split('/')[1],
+    ssl: {
+      rejectUnauthorized: false
+    },
+    // Force IPv4 connection to resolve ENETUNREACH error on Render
+    family: 4,
+    // Additional connection options for better reliability
+    connectionTimeoutMillis: 30000,
+    idleTimeoutMillis: 30000,
+    max: 20,
+    // Prefer IPv4 over IPv6
+    hints: require('dns').ADDRCONFIG
+  };
+} else {
+  // Fallback for local development if DATABASE_URL is not set
+  dbConfig = {
+    user: 'postgres',
+    host: 'localhost',
+    database: 'codedcode',
+    password: 'password',
+    port: 5432,
+  };
+}
+
 const pool = new Pool(dbConfig);
 
 // Event handlers for monitoring
