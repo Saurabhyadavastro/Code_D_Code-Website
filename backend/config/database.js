@@ -11,24 +11,19 @@ const connectionString = process.env.DATABASE_URL;
 let dbConfig;
 
 if (connectionString) {
-  const dbUrl = new URL(connectionString);
+  // Use connection string directly to avoid IPv6 resolution issues
   dbConfig = {
-    user: dbUrl.username,
-    password: dbUrl.password,
-    host: dbUrl.hostname,
-    port: dbUrl.port,
-    database: dbUrl.pathname.split('/')[1],
+    connectionString: connectionString,
     ssl: {
       rejectUnauthorized: false
     },
-    // Force IPv4 connection to resolve ENETUNREACH error on Render
+    // Force IPv4 connection
     family: 4,
-    // Additional connection options for better reliability
+    // Connection pool settings
     connectionTimeoutMillis: 30000,
     idleTimeoutMillis: 30000,
     max: 20,
-    // Prefer IPv4 over IPv6
-    hints: require('dns').ADDRCONFIG
+    min: 2
   };
 } else {
   // Fallback for local development if DATABASE_URL is not set
