@@ -135,7 +135,7 @@ class CodeDCodeApp {
             'web': 'web-development',
             'mobile': 'mobile-development', 
             'data': 'data-science',
-            'ai': 'machine-learning',
+            'ai': 'artificial-intelligence',  // Fixed: ai -> artificial-intelligence
             'devops': 'devops',
             'security': 'cybersecurity'
         };
