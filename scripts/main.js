@@ -72,6 +72,7 @@ class CodeDCodeApp {
                 console.log('📋 Form data collected:', membershipData);
                 console.log('🔄 Backend data mapped:', backendData);
                 console.log('🔗 API_CONFIG:', typeof API_CONFIG !== 'undefined' ? API_CONFIG : 'UNDEFINED!');
+                console.log('📤 Sending to API:', JSON.stringify(backendData, null, 2));
 
                 // Try to submit to backend API
                 const success = await this.submitMembershipToAPI(backendData);
@@ -108,17 +109,23 @@ class CodeDCodeApp {
 
     async submitMembershipToAPI(data) {
         try {
+            console.log('🌐 Making API request to:', `${API_CONFIG.BASE_URL}/api/membership`);
             const response = await fetch(`${API_CONFIG.BASE_URL}/api/membership`, {
                 method: 'POST',
                 headers: API_CONFIG.getHeaders(),
                 body: JSON.stringify(data)
             });
 
+            console.log('📡 Response status:', response.status);
+            
             if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+                const errorText = await response.text();
+                console.error('❌ Backend error response:', errorText);
+                throw new Error(`HTTP error! status: ${response.status}, body: ${errorText}`);
             }
 
             const result = await response.json();
+            console.log('✅ Backend success response:', result);
             return result.success || response.ok;
         } catch (error) {
             console.error('Membership API error:', error);
