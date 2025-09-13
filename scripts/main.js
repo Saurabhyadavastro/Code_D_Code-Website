@@ -36,20 +36,37 @@ class CodeDCodeApp {
                 }
                 
                 // Map frontend field names to backend expected names
+                const yearValue = membershipData.year || membershipData.yearOfStudy || '';
+                let membershipType = 'student';
+                
+                // Determine membership type based on academic status
+                if (yearValue === 'graduate' || yearValue === 'alumni') {
+                    membershipType = 'alumni';
+                }
+                
+                // Get programming interests from checkboxes
+                const interests = this.getSelectedInterests();
+                
                 const backendData = {
-                    firstName: membershipData.firstName || membershipData.name || '',
+                    firstName: membershipData.firstName || '',
                     lastName: membershipData.lastName || '',
                     email: membershipData.email || '',
                     phone: membershipData.phone || '',
-                    membershipType: 'student', // Default to student
-                    yearOfStudy: membershipData.yearOfStudy || membershipData.year || '',
-                    branch: membershipData.branch || membershipData.course || '',
-                    skills: membershipData.skills || '',
-                    reasonToJoin: membershipData.reasonToJoin || membershipData.goals || '',
-                    githubUrl: membershipData.githubUrl || '',
-                    linkedinUrl: membershipData.linkedinUrl || '',
-                    portfolioUrl: membershipData.portfolioUrl || '',
-                    agreeTerms: membershipData.agreeTerms === 'on' || membershipData.terms === 'on' || false
+                    studentId: '', // Not in current form
+                    course: '', // Not used - using branch instead
+                    yearOfStudy: yearValue,
+                    branch: membershipData.branch || '', // Backend expects 'branch'
+                    membershipType: membershipType, // 'student' or 'alumni'
+                    programmingExperience: membershipData.experience || '',
+                    interests: interests.join(', '), // Convert array to comma-separated string
+                    githubProfile: membershipData.githubUrl || '',
+                    linkedinProfile: membershipData.linkedinUrl || '',
+                    whyJoin: membershipData.goals || '', // Backend expects 'whyJoin'
+                    previousExperience: '', // Not in current form
+                    expectations: '', // Not in current form
+                    heardAboutUs: 'website', // Default value since not in form
+                    agreeTerms: (membershipData.agree === 'on'), // Must be boolean true
+                    newsletterSubscribe: (membershipData.newsletter === 'on') || false
                 };
                 
                 console.log('📋 Form data collected:', membershipData);
@@ -78,6 +95,15 @@ class CodeDCodeApp {
         });
         
         console.log('✅ Event listener attached to membership form');
+    }
+
+    getSelectedInterests() {
+        const interests = [];
+        const checkboxes = document.querySelectorAll('.interest-grid input[type="checkbox"]:checked');
+        checkboxes.forEach(checkbox => {
+            interests.push(checkbox.value);
+        });
+        return interests;
     }
 
     async submitMembershipToAPI(data) {
