@@ -23,8 +23,9 @@
     "deployment"
   ],
   "scripts": {
-    "build": "cd backend && npm ci",
-    "start": "cd backend && npm start",
+    "build": "bash build.sh",
+    "build:npm": "echo 'Building backend...' && cd backend && npm ci && echo 'Backend build complete'",
+    "start": "echo 'Starting backend server...' && cd backend && npm start",
     "dev": "cd backend && npm run dev",
     "test": "cd backend && npm test",
     "backend:install": "cd backend && npm install",
@@ -33,7 +34,8 @@
     "backend:dev": "cd backend && npm run dev",
     "backend:test": "cd backend && npm test",
     "lint": "cd backend && npm run lint || echo 'No lint script found'",
-    "clean": "cd backend && rm -rf node_modules && npm install"
+    "clean": "cd backend && rm -rf node_modules && npm install",
+    "verify": "echo 'Verifying project structure...' && ls -la && echo 'Backend directory:' && ls -la backend/"
   },
   "engines": {
     "node": ">=16.0.0",
