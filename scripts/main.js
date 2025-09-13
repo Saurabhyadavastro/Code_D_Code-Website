@@ -6,10 +6,19 @@
 class CodeDCodeApp {
     // Membership Form Submission Handler
     initializeMembershipFormHandler() {
+        console.log('🔍 Looking for membership form...');
         const form = document.getElementById('membershipForm');
-        if (!form) return;
+        
+        if (!form) {
+            console.warn('⚠️ Membership form not found on this page');
+            return;
+        }
+        
+        console.log('✅ Membership form found!', form);
+        
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
+            console.log('🚀 Form submitted! Processing...');
             
             // Show loading state
             const submitBtn = form.querySelector('button[type="submit"]');
@@ -25,11 +34,15 @@ class CodeDCodeApp {
                 for (let [key, value] of formData.entries()) {
                     membershipData[key] = value;
                 }
+                
+                console.log('📋 Form data collected:', membershipData);
+                console.log('🔗 API_CONFIG:', typeof API_CONFIG !== 'undefined' ? API_CONFIG : 'UNDEFINED!');
 
                 // Try to submit to backend API
                 const success = await this.submitMembershipToAPI(membershipData);
                 
                 if (success) {
+                    console.log('✅ Submission successful!');
                     this.showMembershipSuccess();
                     form.reset();
                 } else {
@@ -37,7 +50,7 @@ class CodeDCodeApp {
                 }
                 
             } catch (error) {
-                console.error('Membership submission error:', error);
+                console.error('❌ Membership submission error:', error);
                 this.showMembershipError();
             } finally {
                 // Restore button state
@@ -45,6 +58,8 @@ class CodeDCodeApp {
                 submitBtn.disabled = false;
             }
         });
+        
+        console.log('✅ Event listener attached to membership form');
     }
 
     async submitMembershipToAPI(data) {
