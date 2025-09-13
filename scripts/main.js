@@ -43,28 +43,40 @@ class CodeDCodeApp {
                 const yearValue = membershipData.year || membershipData.yearOfStudy || '';
                 let membershipType = 'student';
                 
+                // Map frontend year values to backend expected values
+                let mappedYear = yearValue;
+                switch(yearValue) {
+                    case '1st': mappedYear = '1st Year'; break;
+                    case '2nd': mappedYear = '2nd Year'; break;
+                    case '3rd': mappedYear = '3rd Year'; break;
+                    case 'final': mappedYear = '4th Year'; break;
+                    case 'graduate': mappedYear = 'Graduate'; break;
+                    case 'alumni': mappedYear = 'Post Graduate'; break;
+                    default: mappedYear = yearValue;
+                }
+                
                 // Determine membership type based on academic status
                 if (yearValue === 'graduate' || yearValue === 'alumni') {
                     membershipType = 'alumni';
                 }
                 
-                // Get programming interests from checkboxes
+                // Get programming interests from checkboxes as array
                 const interests = this.getSelectedInterests();
                 
                 const backendData = {
                     firstName: membershipData.firstName || '',
                     lastName: membershipData.lastName || '',
                     email: membershipData.email || '',
-                    phone: membershipData.phone || '',
+                    phone: membershipData.phone || '0000000000', // Default phone if not provided
                     studentId: '', // Not in current form
                     course: '', // Not used - using branch instead
-                    yearOfStudy: yearValue,
+                    yearOfStudy: mappedYear,
                     branch: membershipData.branch || '', // Backend expects 'branch'
                     membershipType: membershipType, // 'student' or 'alumni'
                     programmingExperience: membershipData.experience || '',
-                    interests: interests.join(', '), // Convert array to comma-separated string
-                    githubProfile: membershipData.githubUrl || '',
-                    linkedinProfile: membershipData.linkedinUrl || '',
+                    interests: interests, // Keep as array, not string
+                    githubProfile: membershipData.githubUrl || 'https://github.com/placeholder',
+                    linkedinProfile: membershipData.linkedinUrl || 'https://linkedin.com/in/placeholder',
                     whyJoin: membershipData.goals || '', // Backend expects 'whyJoin'
                     previousExperience: '', // Not in current form
                     expectations: '', // Not in current form
