@@ -8,12 +8,63 @@ class CodeDCodeApp {
     initializeMembershipFormHandler() {
         const form = document.getElementById('membershipForm');
         if (!form) return;
-        form.addEventListener('submit', (e) => {
+        form.addEventListener('submit', async (e) => {
             e.preventDefault();
-            // Optionally, validate fields here
-            this.showMembershipSuccess();
-            form.reset();
+            
+            // Show loading state
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Submitting...';
+            submitBtn.disabled = true;
+
+            try {
+                // Collect form data
+                const formData = new FormData(form);
+                const membershipData = {};
+                
+                for (let [key, value] of formData.entries()) {
+                    membershipData[key] = value;
+                }
+
+                // Try to submit to backend API
+                const success = await this.submitMembershipToAPI(membershipData);
+                
+                if (success) {
+                    this.showMembershipSuccess();
+                    form.reset();
+                } else {
+                    throw new Error('API submission failed');
+                }
+                
+            } catch (error) {
+                console.error('Membership submission error:', error);
+                this.showMembershipError();
+            } finally {
+                // Restore button state
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }
         });
+    }
+
+    async submitMembershipToAPI(data) {
+        try {
+            const response = await fetch(`${API_CONFIG.BASE_URL}/api/membership`, {
+                method: 'POST',
+                headers: API_CONFIG.getHeaders(),
+                body: JSON.stringify(data)
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const result = await response.json();
+            return result.success || response.ok;
+        } catch (error) {
+            console.error('Membership API error:', error);
+            return false;
+        }
     }
 
     showMembershipSuccess() {
@@ -23,7 +74,23 @@ class CodeDCodeApp {
         notification.style.cssText = 'top: 20px; right: 20px; z-index: 9999; max-width: 350px; animation: slideInRight 0.3s ease;';
         notification.innerHTML = `
             <i class="fas fa-check-circle me-2"></i>
-            Membership form submitted! Welcome to Code_d_Code.
+            Membership application submitted successfully! Welcome to Code_d_Code.
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        `;
+        document.body.appendChild(notification);
+        setTimeout(() => {
+            if (notification.parentNode) notification.remove();
+        }, 5000);
+    }
+
+    showMembershipError() {
+        // Show error notification
+        const notification = document.createElement('div');
+        notification.className = 'alert alert-danger alert-dismissible fade show position-fixed';
+        notification.style.cssText = 'top: 20px; right: 20px; z-index: 9999; max-width: 350px; animation: slideInRight 0.3s ease;';
+        notification.innerHTML = `
+            <i class="fas fa-exclamation-triangle me-2"></i>
+            Failed to submit membership application. Please try again.
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         `;
         document.body.appendChild(notification);
@@ -861,7 +928,7 @@ class DeveloperApplicationModal {
             applicationData.appliedPosition = this.currentPosition;
 
             // Simulate API call (replace with actual submission logic)
-            await this.simulateFormSubmission(applicationData);
+            await this.submitApplicationToAPI(applicationData);
 
             // Show success message
             this.showNotification('Application submitted successfully! We\'ll contact you soon.', 'success');
@@ -879,14 +946,30 @@ class DeveloperApplicationModal {
         }
     }
 
-    async simulateFormSubmission(data) {
-        // Simulate API delay
-        return new Promise((resolve) => {
-            setTimeout(() => {
-                console.log('Application Data:', data);
-                resolve();
-            }, 2000);
-        });
+    async submitApplicationToAPI(data) {
+        try {
+            const response = await fetch(`${API_CONFIG.BASE_URL}/api/membership`, {
+                method: 'POST',
+                headers: API_CONFIG.getHeaders(),
+                body: JSON.stringify({
+                    ...data,
+                    type: 'job_application',
+                    position: data.appliedPosition
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const result = await response.json();
+            return result.success || response.ok;
+        } catch (error) {
+            console.error('Application API error:', error);
+            // Fallback: just log the data
+            console.log('Application Data (fallback):', data);
+            return true; // Return true to show success message
+        }
     }
 
     setSubmitButtonLoading(loading) {

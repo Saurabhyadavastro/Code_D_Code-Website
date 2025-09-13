@@ -132,7 +132,15 @@ class ContactFormHandler {
     }
 
     async sendMessage(data) {
-        // Method 1: Try EmailJS (if configured)
+        // Method 1: Try Backend API first
+        try {
+            const response = await this.sendViaBackendAPI(data);
+            if (response) return true;
+        } catch (error) {
+            console.warn('Backend API failed:', error);
+        }
+
+        // Method 2: Try EmailJS (if configured)
         try {
             if (typeof emailjs !== 'undefined') {
                 const response = await this.sendViaEmailJS(data);
@@ -142,7 +150,7 @@ class ContactFormHandler {
             console.warn('EmailJS failed:', error);
         }
 
-        // Method 2: Try Formspree
+        // Method 3: Try Formspree
         try {
             const response = await this.sendViaFormspree(data);
             if (response) return true;
@@ -150,7 +158,7 @@ class ContactFormHandler {
             console.warn('Formspree failed:', error);
         }
 
-        // Method 3: Try local PHP handler
+        // Method 4: Try local PHP handler
         try {
             const response = await this.sendViaPHP(data);
             if (response) return true;
@@ -158,7 +166,7 @@ class ContactFormHandler {
             console.warn('PHP handler failed:', error);
         }
 
-        // Method 4: Fallback to mailto
+        // Method 5: Fallback to mailto
         this.openMailto(data);
         return true; // Assume success for mailto
     }
@@ -175,6 +183,33 @@ class ContactFormHandler {
 
         const response = await emailjs.send('default_service', 'template_contact', templateParams);
         return response.status === 200;
+    }
+
+    async sendViaBackendAPI(data) {
+        try {
+            const response = await fetch(`${API_CONFIG.BASE_URL}/api/contact`, {
+                method: 'POST',
+                headers: API_CONFIG.getHeaders(),
+                body: JSON.stringify({
+                    firstName: data.firstName,
+                    lastName: data.lastName,
+                    email: data.email,
+                    phone: data.phone,
+                    subject: data.subject,
+                    message: data.message
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const result = await response.json();
+            return result.success || response.ok;
+        } catch (error) {
+            console.error('Backend API error:', error);
+            return false;
+        }
     }
 
     async sendViaFormspree(data) {
