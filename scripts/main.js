@@ -35,11 +35,29 @@ class CodeDCodeApp {
                     membershipData[key] = value;
                 }
                 
+                // Map frontend field names to backend expected names
+                const backendData = {
+                    firstName: membershipData.firstName || membershipData.name || '',
+                    lastName: membershipData.lastName || '',
+                    email: membershipData.email || '',
+                    phone: membershipData.phone || '',
+                    membershipType: 'student', // Default to student
+                    yearOfStudy: membershipData.yearOfStudy || membershipData.year || '',
+                    branch: membershipData.branch || membershipData.course || '',
+                    skills: membershipData.skills || '',
+                    reasonToJoin: membershipData.reasonToJoin || membershipData.goals || '',
+                    githubUrl: membershipData.githubUrl || '',
+                    linkedinUrl: membershipData.linkedinUrl || '',
+                    portfolioUrl: membershipData.portfolioUrl || '',
+                    agreeTerms: membershipData.agreeTerms === 'on' || membershipData.terms === 'on' || false
+                };
+                
                 console.log('📋 Form data collected:', membershipData);
+                console.log('🔄 Backend data mapped:', backendData);
                 console.log('🔗 API_CONFIG:', typeof API_CONFIG !== 'undefined' ? API_CONFIG : 'UNDEFINED!');
 
                 // Try to submit to backend API
-                const success = await this.submitMembershipToAPI(membershipData);
+                const success = await this.submitMembershipToAPI(backendData);
                 
                 if (success) {
                     console.log('✅ Submission successful!');
